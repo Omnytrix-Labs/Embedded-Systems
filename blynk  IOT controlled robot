@@ -1,0 +1,134 @@
+#define BLYNK_PRINT Serial
+
+/* Fill-in your Template ID (only if using Blynk.Cloud) */
+//#define BLYNK_TEMPLATE_ID   "YourTemplateID"
+#define BLYNK_TEMPLATE_ID "TMPLoYsgkrch"
+#define BLYNK_DEVICE_NAME "Robot control"
+#define BLYNK_AUTH_TOKEN "4RG3Ofx0l9KWssuvmk-TtsFwJbyWP1Ko"
+
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+
+#define m11 D1
+#define m12 D2
+#define m21 D6
+#define m22 D7
+
+// You should get Auth Token in the Blynk App.
+// Go to the Project Settings (nut icon).
+char auth[] = BLYNK_AUTH_TOKEN;
+
+// Your WiFi credentials.
+// Set password to "" for open networks.
+char ssid[] = "Omnytrix labs";
+char pass[] = "Omnytrix@123";
+
+
+BLYNK_WRITE(V0)
+{
+  int s0 = param.asInt(); // parameter as int 
+  if(s0 == HIGH)
+  {    
+    digitalWrite(m11,HIGH);
+    digitalWrite(m12,LOW);
+    digitalWrite(m21,HIGH);
+    digitalWrite(m22,LOW);
+    delay(10);
+    }  
+  else
+  {
+    digitalWrite(m11,LOW);
+    digitalWrite(m12,LOW);
+    digitalWrite(m21,LOW);
+    digitalWrite(m22,LOW);
+    delay(10);
+    }  
+}
+BLYNK_WRITE(V1)
+{
+  int s1 = param.asInt(); // parameter as int 
+  if(s1 == HIGH)
+  {    
+    digitalWrite(m11,LOW);
+    digitalWrite(m12,HIGH);
+    digitalWrite(m21,LOW);
+    digitalWrite(m22,HIGH);
+    delay(10);
+    }  
+  else
+  {
+    digitalWrite(m11,LOW);
+    digitalWrite(m12,LOW);
+    digitalWrite(m21,LOW);
+    digitalWrite(m22,LOW);
+    delay(10);
+    }  
+}
+BLYNK_WRITE(V2)
+{
+  int s2 = param.asInt(); // parameter as int 
+  if(s2 == HIGH)
+  {    
+    digitalWrite(m11,LOW);
+    digitalWrite(m12,LOW);
+    digitalWrite(m21,HIGH);
+    digitalWrite(m22,LOW);
+    delay(10);
+    }  
+  else
+  {
+    digitalWrite(m11,LOW);
+    digitalWrite(m12,LOW);
+    digitalWrite(m21,LOW);
+    digitalWrite(m22,LOW);
+    delay(10);
+    }  
+}
+BLYNK_WRITE(V3)
+{
+  int s3 = param.asInt(); // parameter as int 
+  if(s3 == HIGH)
+  {    
+    digitalWrite(m11,HIGH);
+    digitalWrite(m12,LOW);
+    digitalWrite(m21,LOW);
+    digitalWrite(m22,LOW);
+    delay(10);
+    }  
+  else
+  {
+    digitalWrite(m11,LOW);
+    digitalWrite(m12,LOW);
+    digitalWrite(m21,LOW);
+    digitalWrite(m22,LOW);
+    delay(10);
+    }  
+}
+
+
+void setup()
+{
+  // Debug console
+  Serial.begin(9600);
+  pinMode(m11,OUTPUT);
+  pinMode(m12,OUTPUT);
+  pinMode(m21,OUTPUT);
+  pinMode(m22,OUTPUT);
+  digitalWrite(m11, LOW);
+  digitalWrite(m12, LOW);
+  digitalWrite(m21, LOW);
+  digitalWrite(m22, LOW);
+  Serial.println("");
+  Serial.println("Serial begin");
+
+  Blynk.begin(auth, ssid, pass);
+  delay(2000);
+  // You can also specify server:
+  //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 80);
+  //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
+}
+
+void loop()
+{
+  Blynk.run();
+}
