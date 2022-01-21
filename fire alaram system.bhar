@@ -1,0 +1,22 @@
+int led=13; 
+int fire=2;
+int buzzer=11;
+void setup() {
+Serial.begin(9600);
+pinMode(led,OUTPUT);
+pinMode(fire,INPUT);
+pinMode(buzzer,OUTPUT);
+}
+void loop() {
+  
+if(digitalRead(2)==LOW){ 
+  digitalWrite(13,HIGH);
+  digitalWrite(11,HIGH);
+}
+else
+  {
+  digitalWrite(13,LOW);
+  digitalWrite(11,LOW);
+  
+}
+}
