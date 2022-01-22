@@ -1,0 +1,23 @@
+int sensor= A0; 
+int output;
+int motor =4 ;
+void setup() {
+  pinMode(sensor,INPUT);
+  pinMode(4,OUTPUT);
+     Serial.begin(9600);
+   Serial.println("Reading from the sensor ...");
+   delay(2000);
+}
+void loop() {
+   output= analogRead(sensor);
+   output= map(output,550,10,0,100);
+  Serial.print("Mositure : ");
+   Serial.print(output);
+   if(output<0){
+      digitalWrite(4,HIGH);
+     }
+     else{
+            digitalWrite(4,LOW);
+     }
+   delay(1000);
+}
